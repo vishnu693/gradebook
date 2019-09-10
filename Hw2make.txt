@@ -1,0 +1,29 @@
+prog: main.o enrollmentCollection.o enrollment.o student.o studentCollection.o course.o courseCollection.o
+	g++ -o prog main.o enrollmentCollection.o enrollment.o student.o studentCollection.o course.o courseCollection.o
+
+main.o: enrollmentCollection.h main.cpp
+	g++ -c main.cpp
+	
+enrollmentCollection.o: enrollment.h enrollmentCollection.cpp
+	g++ -c enrollmentCollection.cpp
+
+enrollment.o: studentCollection.h courseCollection.h enrollment.cpp
+	g++ -c enrollment.cpp
+	
+studentCollection.o: studentCollection.cpp student.h
+	g++ -c studentCollection.cpp
+
+student.o: student.cpp
+	g++ -c student.cpp
+
+courseCollection.o: courseCollection.cpp course.h
+	g++ -c courseCollection.cpp
+
+course.o: course.cpp
+	g++ -c course.cpp
+clean:
+	rm prog main.o enrollmentCollection.o enrollment.o student.o studentCollection.o course.o courseCollection.o
+run:
+	./prog
+
+	
